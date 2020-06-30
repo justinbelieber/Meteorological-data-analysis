@@ -1,9 +1,7 @@
 2020.6.30
 上午：
 继续安装spark2.3.1及配置相关环境，多次报错
-下载Java8 及 spark3.0.0版本
-尝试更换Java版本及spark版本，报错消失，但是存在warning
-下载spark2.4.6版本
+尝试更换Java8版本及spark3.0.0版本，报错消失，但是存在warning
 尝试更换spark为2.4.6版本，仍然存在报错，于是换回3.0.0版本
 在pycharm上配置spark
 在pycharm上运行test.py测试文件，存在warning但是能输出结果
