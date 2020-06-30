@@ -1,3 +1,6 @@
+2020/6/30
+上午
+
 利用pycharm在master分支的文件夹下创建空的.log文件并commit以备使用。
 
 使用pip命令安装Statamodels等依赖包。
