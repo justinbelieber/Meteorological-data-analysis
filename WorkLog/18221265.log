@@ -1,1 +1,23 @@
+根据项目计划，今天上午需要学习前端方面的知识，做的笔记如下：
+HTML（Hypertext Markup Language）超文本标记语言
+HTML使用标签的形式表示网页中的不同组成部分
+超文本指的是超链接，可以使我们跳转页面 
+渲染
+后缀名为html的文件由网页打开
+标记的形式：<name>
+标签成对出现<start>lalala</start>  一对标签  中间是标签体
+一级标题标签：<h1>标题</h1>
+二级标题标签：<h2>jjk</h2>
+段落：<p></p>
+根标签：<html>网页内容</html>
+子标签：在根标签内部。<head>  <body>  <title>
+只有开始标签：<img><input>自结束标签
+注释：<!--
+                comment
+           -->
+注释不能嵌套
+
+
+任务方面:
+完成了Python、pycharm和java的安装与配置，在spark和Hadoop的安装配置部分出现问题
 
