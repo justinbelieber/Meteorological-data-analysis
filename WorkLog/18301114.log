@@ -1,0 +1,18 @@
+利用pycharm在master分支的文件夹下创建空的.log文件并commit以备使用。
+
+使用pip命令安装Statamodels等依赖包。
+
+再次配置spark：
+尝试更换spark2.3.1，失败；
+尝试更换spark2.4.6，失败；
+尝试spark3.0.0；存在不少警告以及界面大小计算失败的问题。
+pycharm项目安装Pyspark，出现警告但是似乎不影响运行。
+
+进入VMware网站下载VMware Workstation Player
+安装虚拟机：
+课程任务省略许多虚拟机基础操作，百度学习。
+虚拟机开启出现错误，尝试修改bios设置。
+重启五次修改成功，无iso映像文件。
+iso文件过大，评估风险，先放一放。
+
+百度学习python语法。
