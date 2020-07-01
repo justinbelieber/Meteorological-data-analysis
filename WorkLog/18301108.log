@@ -23,3 +23,10 @@ sudo /etc/init.d/networking restart 找不到命令
 尝试更换Ubuntu版本，出现图标，仍无法连接网络
 百度求助无果
 换回原先版本，在组内大佬们帮助下成功连接网络
+下午：
+尝试xshell连接，连接失败
+尝试修改，重新连接成功
+虚拟机暂时搁置
+命令行尝试spark数据清洗
+pycharm尝试spark数据清洗,得到maxmin.csv文件
+学习spark数据处理
