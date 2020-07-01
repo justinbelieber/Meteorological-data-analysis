@@ -30,3 +30,5 @@ sudo /etc/init.d/networking restart 找不到命令
 命令行尝试spark数据清洗
 pycharm尝试spark数据清洗,得到maxmin.csv文件
 学习spark数据处理
+git出现不知名错误 无法push与pull
+修复无果，重新clone
