@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="06b86705-058e-4ea7-a223-4d31cee7b07c" name="Default Changelist" comment="UPDATE 18301114.log 2020/7/1" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1e1E92cMJCoWkgr6l3sFpiS7dju" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Data-cleaning" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="D:\pycharm\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Data-cleaning.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.Data-cleaning" />
+        <item itemvalue="Python.Data-cleaning" />
+        <item itemvalue="Python.Data-cleaning" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="06b86705-058e-4ea7-a223-4d31cee7b07c" name="Default Changelist" comment="" />
+      <created>1593480543302</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1593480543302</updated>
+    </task>
+    <task id="LOCAL-00001" summary="create 18301114.log">
+      <created>1593480621002</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1593480621002</updated>
+    </task>
+    <task id="LOCAL-00002" summary="create 18301114.log">
+      <created>1593488804543</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1593488804543</updated>
+    </task>
+    <task id="LOCAL-00003" summary="UPDATE 18301114.log">
+      <created>1593489163274</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1593489163274</updated>
+    </task>
+    <task id="LOCAL-00004" summary="UPDATE 18301114.log">
+      <created>1593507523125</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1593507523125</updated>
+    </task>
+    <task id="LOCAL-00005" summary="UPDATE 18301114.log">
+      <created>1593511411966</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1593511411966</updated>
+    </task>
+    <task id="LOCAL-00006" summary="UPDATE 18301114.log 2020/7/1">
+      <created>1593572178384</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1593572178384</updated>
+    </task>
+    <task id="LOCAL-00007" summary="useless">
+      <created>1593576555036</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1593576555036</updated>
+    </task>
+    <task id="LOCAL-00008" summary="pandas experience">
+      <created>1593588581989</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1593588581989</updated>
+    </task>
+    <task id="LOCAL-00009" summary="pandas experience">
+      <created>1593588865267</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1593588865267</updated>
+    </task>
+    <task id="LOCAL-00010" summary="pandas experience">
+      <created>1593588989100</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1593588989100</updated>
+    </task>
+    <task id="LOCAL-00011" summary="UPDATE 18301114.log 2020/7/1">
+      <created>1593592548440</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1593592548440</updated>
+    </task>
+    <task id="LOCAL-00012" summary="UPDATE 18301114 2020/7/1">
+      <created>1593596115029</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1593596115029</updated>
+    </task>
+    <task id="LOCAL-00013" summary="UPDATE 18301114.log 2020/7/1">
+      <created>1593596175496</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1593596175496</updated>
+    </task>
+    <task id="LOCAL-00014" summary="UPDATE 18301114.log 2020/7/1">
+      <created>1593596970726</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1593596970726</updated>
+    </task>
+    <task id="LOCAL-00015" summary="UPDATE 18301114.log 2020/7/1">
+      <created>1593597360269</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1593597360269</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.log" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="create 18301114.log" />
+    <MESSAGE value="UPDATE 18301114.log" />
+    <MESSAGE value="useless" />
+    <MESSAGE value="pandas experience" />
+    <MESSAGE value="UPDATE 18301114 2020/7/1" />
+    <MESSAGE value="UPDATE 18301114.log 2020/7/1" />
+    <option name="LAST_COMMIT_MESSAGE" value="UPDATE 18301114.log 2020/7/1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="465" y="0" key="#Data-cleaning" timestamp="1593598983551">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="465" y="0" key="#Data-cleaning/0.0.1536.824@0.0.1536.824" timestamp="1593598983551" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1593599033682">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1593599033682" />
+    <state width="1515" height="213" key="GridCell.Tab.0.bottom" timestamp="1593599034782">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="213" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593599034782" />
+    <state width="1515" height="213" key="GridCell.Tab.0.center" timestamp="1593599034782">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="213" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1593599034782" />
+    <state width="1515" height="213" key="GridCell.Tab.0.left" timestamp="1593599034782">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="213" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1593599034782" />
+    <state width="1515" height="213" key="GridCell.Tab.0.right" timestamp="1593599034782">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="213" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1593599034782" />
+    <state x="147" y="65" key="MergeDialog" timestamp="1593598820883">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="147" y="65" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1593598820883" />
+    <state x="403" y="173" key="MultipleFileMergeDialog" timestamp="1593598820889">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="403" y="173" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1593598820889" />
+    <state x="950" y="117" key="RollbackChangesDialog" timestamp="1593586944164">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="950" y="117" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1593586944164" />
+    <state x="270" y="57" key="SettingsEditor" timestamp="1593651579642">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="270" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1593651579642" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1593598876362">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1593598876362" />
+    <state x="563" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1593488751049">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="563" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1593488751049" />
+    <state x="529" y="124" key="git4idea.branch.GitSmartOperationDialog" timestamp="1593593603275">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="529" y="124" key="git4idea.branch.GitSmartOperationDialog/0.0.1536.824@0.0.1536.824" timestamp="1593593603275" />
+    <state x="404" y="199" key="git4idea.merge.GitPullDialog" timestamp="1593596564829">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="404" y="199" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1593596564829" />
+  </component>
+</project>
