@@ -7,15 +7,17 @@ import statsmodels.api as sm
 import statsmodels.formula as smf
 import statsmodels.tsa.api as smt
 import seaborn as sns
+from statsmodels.graphics.api import qqplot
+
+'''
 data_raw = pd.read_csv('2199268.csv', encoding='utf-8')
 data_raw['date'] = data_raw['DATE'].apply(parser.parse)
 data_raw['tmax'] = data_raw['TMAX'].astype(float)
 data_raw['tmin'] = data_raw['TMIN'].astype(float)
 data = data_raw.loc[:, ['date', 'tmax', 'tmin']]
 data = data[(pd.Series.notnull(data['tmax'])) & (pd.Series.notnull(data['tmin']))]
-data = data[(data['date'] >= datetime(1980, 1, 1)) & (data['date'] <= datetime(2016, 1, 1))]
-data.query("date.dt.day == 15 & date.dt.month ==6", inplace=True)
-'''
+data = data[(data['date'] >= datetime(1980, 1, 1)) & (data['date'] <= datetime(2012, 1, 1))]
+data.query("date.dt.day == 28 & date.dt.month ==6", inplace=True)
 data['diff1'] = data['tmin'].diff(1)  # 一阶差分
 data['diff2'] = data['diff1'].diff(1)  # 二阶差分
 # data.to_csv('maxmin.csv', index=None)
@@ -38,12 +40,19 @@ ax2.xaxis.set_ticks_position('bottom')
 fig.tight_layout()
 #plt.show()
 '''
-arima200 = sm.tsa.ARIMA(data['tmin'], order=(2, 0, 0))#fit()  # (p,d,q)
+data = pd.read_csv('maxmin.csv', parse_dates=['date'])
+dta = data['tmin']
+data_year = data['date']
+begin_year = data_year[0:1].dt.year
+end_year = data_year[-1:].dt.year
+
+arima200 = sm.tsa.ARIMA(dta, order=(2, 0, 0))  # fit()  # (p,d,q)
 model_results = arima200.fit()
 # 遍历，寻找适宜的参数
 import itertools
 import sys
 import os
+
 p_min = 0
 d_min = 0
 q_min = 0
@@ -63,7 +72,7 @@ for p, d, q in itertools.product(range(p_min, p_max + 1),
         continue
 
     try:
-        model = sm.tsa.ARIMA(data['tmin'], order=(p, d, q),
+        model = sm.tsa.ARIMA(dta, order=(p, d, q),
                              # enforce_stationarity=False,
                              # enforce_invertibility=False,
                              )
@@ -82,11 +91,11 @@ ax = sns.heatmap(results_bic,
                  )
 ax.set_title('BIC')
 
-train_results = sm.tsa.arma_order_select_ic(data['tmin'], ic=['aic', 'bic'], trend='nc', max_ar=4, max_ma=4)
+train_results = sm.tsa.arma_order_select_ic(dta, ic=['aic', 'bic'], trend='nc', max_ar=4, max_ma=4)
 print('AIC', train_results.aic_min_order)
 print('BIC', train_results.bic_min_order)
 print(sm.stats.durbin_watson(model_results.resid.values))
-"""
+'''
 #残差检验
 resid = model_results.resid #赋值
 fig = plt.figure(figsize=(12, 8))
@@ -94,11 +103,13 @@ ax1 = fig.add_subplot(211)
 fig = sm.graphics.tsa.plot_acf(resid.values.squeeze(), lags=40, ax=ax1)
 ax2 = fig.add_subplot(212)
 fig = sm.graphics.tsa.plot_pacf(resid, lags=40, ax=ax2)
-
-predict_sunspots = model_results.predict('2012-06', '2018-08', dynamic=True)
-print(predict_sunspots)
-fig, ax = plt.subplots(figsize=(12, 8))
-ax = data.ix['2007':].plot(ax=ax)
-predict_sunspots.plot(ax=ax)
+resid = model_results.resid#残差
+fig = plt.figure(figsize=(12, 8))
+ax = fig.add_subplot(111)
+fig = qqplot(resid, line='q', ax=ax, fit=True)
 plt.show()
-"""
+'''
+predict_sunspots = model_results.predict(str(end_year.values[0]), str(predict_end_year), dynamic=True)
+print(predict_sunspots)
+
+
