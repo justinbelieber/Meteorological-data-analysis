@@ -41,3 +41,18 @@ HTML 元素以结束标签终止
 7.2
 学习easyui，做了用户管理的简单demo，有一点丑，后续还会改善
 继续学习了h5，争取今晚写出来用户管理界面
+
+7.3
+下载myeclipse和tomcat
+配置java ide
+配置了myeclipse的环境，配置了tomcat
+中间出现了一点问题，下载了maven解决了问题，晚上学习怎么用myeclipse写网页
+明天争取搞完页面
+今天学到的自动配置maven：
+<dependencies>	
+<dependency>		
+	<groupId>org.apache.maven.plugins</groupId>		
+	<artifactId>maven-resources-plugin</artifactId>		
+	<version>2.6</version>	
+</dependency>
+</dependencies>
