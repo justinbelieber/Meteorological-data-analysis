@@ -9,21 +9,20 @@ import statsmodels.api as sm
 import statsmodels.tsa.api as smt
 
 #数据读取与数据类型转换
-data_raw = pd.read_csv(r'D:\GITHUB\Meteorological-data-analysis\thedata.csv', encoding='utf-8')
-data = data_raw.loc[:, ['DATE', 'TAVG', 'TMAX', 'TMIN']]
-data['DATE'] = data['DATE'].apply(parser.parse)
+data_raw = pd.read_csv(r'D:\GITHUB\Meteorological-data-analysis\thedata.csv', index_col='DATE', parse_dates=['DATE'])
+data = data_raw.loc[:, ['TAVG', 'TMAX', 'TMIN']]
+# data['DATE'] = data['DATE'].apply(parser.parse)
 data['TAVG'] = data['TAVG'].astype(float)
 data['TMAX'] = data['TMAX'].astype(float)
 data['TMIN'] = data['TMIN'].astype(float)
 
 #数据清洗，并将清洗后的日期和最大值存入data_max
 data = data[(pd.Series.notnull(data['TMAX'])) & (pd.Series.notnull(data['TMIN']))]
-data = data[(data['DATE'] >= datetime(1980, 1, 1)) & (data['DATE'] <= datetime(2016, 1, 1))]
 data.query("DATE.dt.day == 15 & DATE.dt.month == 6", inplace=True)
-data_max = data.loc[:, ['DATE', 'TMAX']]
+data_max = data.loc[:, ['TMAX']]
+# data_max['DATA'] = datetime.now().strftime('%Y-%m-%d')
 
-
-print(data)
+print(data_max)
 
 # data_max['diff_1'] = data_max['TMAX'].diff(1)
 # data_max['diff_2'] = data_max['diff_1'].diff(1)
@@ -47,29 +46,63 @@ fig = sm.graphics.tsa.plot_pacf(data_max['TMAX'], lags=20, ax=ax2)
 ax2.xaxis.set_ticks_position('bottom')
 fig.tight_layout()
 
+# 遍历，寻找适宜的参数
+import itertools
 
-# 3.2.可视化结果
+p_min = 0
+d_min = 0
+q_min = 0
+p_max = 5
+d_max = 0
+q_max = 5
 
-def tsplot(y, lags=None, title='', figsize=(14, 8)):
-    fig = plt.figure(figsize=figsize)
-    layout = (2, 2)
-    ts_ax = plt.subplot2grid(layout, (0, 0))
-    hist_ax = plt.subplot2grid(layout, (0, 1))
-    acf_ax = plt.subplot2grid(layout, (1, 0))
-    pacf_ax = plt.subplot2grid(layout, (1, 1))
+# Initialize a DataFrame to store the results,，以BIC准则
+results_bic = pd.DataFrame(index=['AR{}'.format(i) for i in range(p_min, p_max + 1)],
+                           columns=['MA{}'.format(i) for i in range(q_min, q_max + 1)])
 
-    y.plot(ax=ts_ax)
-    ts_ax.set_title(title)
-    y.plot(ax=hist_ax, kind='hist', bins=25)
-    hist_ax.set_title('Histogram')
-    smt.graphics.plot_acf(y, lags=lags, ax=acf_ax)
-    smt.graphics.plot_pacf(y, lags=lags, ax=pacf_ax)
-    [ax.set_xlim(0) for ax in [acf_ax, pacf_ax]]
-    sns.despine()
-    plt.tight_layout()
-    return ts_ax, acf_ax, pacf_ax
+for p, d, q in itertools.product(range(p_min, p_max + 1),
+                                 range(d_min, d_max + 1),
+                                 range(q_min, q_max + 1)):
+    if p == 0 and d == 0 and q == 0:
+        results_bic.loc['AR{}'.format(p), 'MA{}'.format(q)] = np.nan
+        continue
+
+    try:
+        model = sm.tsa.ARIMA(data_max['TMAX'], order=(p, d, q),
+                             # enforce_stationarity=False,
+                             # enforce_invertibility=False,
+                             )
+        results = model.fit()
+        results_bic.loc['AR{}'.format(p), 'MA{}'.format(q)] = results.bic
+    except:
+        continue
+results_bic = results_bic[results_bic.columns].astype(float)
+
+fig, ax = plt.subplots(figsize=(10, 8))
+ax = sns.heatmap(results_bic,
+                 mask=results_bic.isnull(),
+                 ax=ax,
+                 annot=True,
+                 fmt='.2f',
+                 )
+ax.set_title('BIC')
+
+#arima200 = sm.tsa.ARIMA(data_max['TMAX'], order=(2, 0, 0)).fit()  # (p,d,q)
+# 遍历，寻找适宜的参数
 
 
-tsplot(data_max['TMAX'], title='Consumer Sentiment', lags=36)
+# 模型评价准则
+train_results = sm.tsa.arma_order_select_ic(data_max['TMAX'], ic=['aic', 'bic'], trend='nc', max_ar=4, max_ma=4)
+
+print('AIC', train_results.aic_min_order)
+print('BIC', train_results.bic_min_order)
+
+model = sm.tsa.ARIMA(data_max['TMAX'], order=(0, 0, 1))
+results = model.fit()
+predict_sunspots = results.predict(dynamic=False)
+print(predict_sunspots)
+fig, ax = plt.subplots(figsize=(12, 8))
+ax = data_max['TMAX'].plot(ax=ax)
+predict_sunspots.plot(ax=ax)
+
 plt.show()
-
