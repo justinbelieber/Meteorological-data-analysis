@@ -1,13 +1,27 @@
 import pandas as pd
 import numpy as np
-from datetime import datetime
-from dateutil import parser
-import matplotlib.pylab as plt
+from scipy import stats
 import statsmodels.api as sm
-import statsmodels.formula as smf
-import statsmodels.tsa.api as smt
-import seaborn as sns
+import matplotlib.pyplot as plt
 from statsmodels.graphics.api import qqplot
+data = pd.read_csv(r'2199268.csv', index_col='DATE', parse_dates=['DATE'])
+sub = data['1980-01':'2012-12']['TMIN']
+train = sub.loc['2011-06-01':'2011-12-31']  # loc切分
+test = sub.loc['2011-12-15':'2012-01-15']
+'''
+train_results = sm.tsa.arma_order_select_ic(train, ic=['aic', 'bic'], trend='nc', max_ar=4, max_ma=4)
+
+print('AIC', train_results.aic_min_order)
+print('BIC', train_results.bic_min_order)
+'''
+arma_mod = sm.tsa.ARIMA(train, order=(1, 0, 1))
+arima_result = arma_mod.fit()
+predict_dta = arima_result.predict(start=str('2011-12-15'), end=str('2012-01-15'), dynamic=True)
+print(predict_dta)
+fig, ax = plt.subplots(figsize=(12, 8))
+ax = test.plot(ax=ax)
+predict_dta.plot(ax=ax)
+plt.show()
 
 '''
 data_raw = pd.read_csv('2199268.csv', encoding='utf-8')
@@ -39,7 +53,7 @@ fig = sm.graphics.tsa.plot_pacf(data['tmin'], lags=20, ax=ax2)
 ax2.xaxis.set_ticks_position('bottom')
 fig.tight_layout()
 #plt.show()
-'''
+
 data = pd.read_csv('maxmin.csv', parse_dates=['date'])
 dta = data['tmin']
 data_year = data['date']
@@ -95,7 +109,7 @@ train_results = sm.tsa.arma_order_select_ic(dta, ic=['aic', 'bic'], trend='nc', 
 print('AIC', train_results.aic_min_order)
 print('BIC', train_results.bic_min_order)
 print(sm.stats.durbin_watson(model_results.resid.values))
-'''
+
 #残差检验
 resid = model_results.resid #赋值
 fig = plt.figure(figsize=(12, 8))
@@ -108,8 +122,8 @@ fig = plt.figure(figsize=(12, 8))
 ax = fig.add_subplot(111)
 fig = qqplot(resid, line='q', ax=ax, fit=True)
 plt.show()
-'''
+
 predict_sunspots = model_results.predict(str(end_year.values[0]), str(predict_end_year), dynamic=True)
 print(predict_sunspots)
-
+'''
 
