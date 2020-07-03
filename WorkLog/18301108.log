@@ -32,3 +32,8 @@ pycharm尝试spark数据清洗,得到maxmin.csv文件
 学习spark数据处理
 git出现不知名错误 无法push与pull
 修复无果，重新clone
+
+2020.7.2
+学习ARIMA模型，有点难理解，进度缓慢
+尝试差分，得到差分图
+尝试ACF与PACF，得到ACF与PACF图
