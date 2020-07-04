@@ -53,3 +53,7 @@ git出现不知名错误 无法push与pull
 研究arima与arma模型
 p,d,q参数确定还是不是太懂
 继续摸索中
+下午：
+研究auto_arima模型
+研究样本外预测与csv文件生成
+研究教程
