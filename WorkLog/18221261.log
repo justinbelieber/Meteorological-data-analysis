@@ -56,3 +56,8 @@ HTML 元素以结束标签终止
 	<version>2.6</version>	
 </dependency>
 </dependencies>
+
+7.4
+今天下载了vs code和navicat，之前用的navicat是试用版，现在没办法再用了
+写了用户登录界面和用户注册界面，登陆成功后就是数据展示界面了
+遇到了一些问题，在js连接数据库上遇到一些问题还没有解决，今天之内会解决
