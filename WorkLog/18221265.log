@@ -103,3 +103,9 @@ br换行
 - 内联框架  iframe  向当前页面引入其他页面
 - CSS 写在style标签中，style标签写在head中
    CSS选择器：p{color:green;font-size:50px}
+
+7.5
+今天写了数据传递部分和主界面
+改了很多JavaScript方面的错误
+既可以写在js文件中，也可以写在html里
+function需要调用才能运行
