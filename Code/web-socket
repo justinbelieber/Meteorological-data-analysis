@@ -1,0 +1,165 @@
+# _*_ coding:utf-8 _*_
+import socket
+import threading
+import sys
+from auto_ARIMA import predict_week_data
+from readJson import transfer_to_json
+from readJson import readJson
+import base64
+import hashlib
+import struct
+
+# ====== config ======
+HOST = 'localhost'
+PORT = 3368
+MAGIC_STRING = '258EAFA5-E914-47DA-95CA-C5AB0DC85B11'
+#res_key = base64.b64encode(hashlib.sha1(sec_key + MAGIC_STRING).digest())
+HANDSHAKE_STRING = "HTTP/1.1 101 Switching Protocols\r\n" \
+                   "Upgrade:websocket\r\n" \
+                   "Connection: Upgrade\r\n" \
+                   "Sec-WebSocket-Accept: {1}\r\n" \
+                   "WebSocket-Location: ws://{2}/chat\r\n" \
+                   "WebSocket-Protocol:chat\r\n\r\n"
+
+
+class Th(threading.Thread):
+    def __init__(self, connection, ):
+        threading.Thread.__init__(self)
+        self.con = connection
+
+    def run(self):
+        while True:
+            try:
+                pass
+            except:
+                return  False
+        self.con.close()
+
+    def recv_data(self, num):
+        try:
+            all_data = self.con.recv(num)
+            if not len(all_data):
+                return False
+        except:
+            return False
+        else:
+            code_len = ord(all_data[1]) & 127
+            if code_len == 126:
+                masks = all_data[4:8]
+                data = all_data[8:]
+            elif code_len == 127:
+                masks = all_data[10:14]
+                data = all_data[14:]
+            else:
+                masks = all_data[2:6]
+                data = all_data[6:]
+            raw_str = ""
+            i = 0
+            for d in data:
+                raw_str += chr(ord(d) ^ ord(masks[i % 4]))
+                i += 1
+            return raw_str
+
+    # send data
+    def send_data(self, data):
+        if data:
+            data = str(data)
+        else:
+            return False
+        token = "\x81"
+        length = len(data)
+        if length < 126:
+            token += struct.pack("B", length)
+        elif length <= 0xFFFF:
+            token += struct.pack("!BH", 126, length)
+        else:
+            token += struct.pack("!BQ", 127, length)
+        # struct为Python中处理二进制数的模块，二进制流为C，或网络流的形式。
+        data = '%s%s' % (token, data)
+        self.con.send(data)
+        return True
+
+    # handshake
+def handshake(con):
+        headers = {}
+        shake = con.recv(1024)
+
+        if not len(shake):
+            print("no shake ,shit!")
+            return False
+        ssh = '\r\n\r\n'
+        header, data = shake.split(ssh.encode(), 1)
+        #print('header: '+header.decode() + "  data=" + data.decode())
+        ssh = '\r\n'
+        for line in header.split(ssh.encode())[1:]:
+            ssh = ': '
+            key, val = line.split(ssh.encode(), 1)
+        #    print('key=' + key.decode() + ' val=' + val.decode())
+            headers[key] = val
+        ssh = 'Sec-WebSocket-Key'
+        if ssh.encode() not in headers:
+            print('This socket is not websocket, client close.')
+            con.close()
+            return False
+        ssh = ssh.encode()
+        sec_key = headers[ssh]
+        res_key = base64.b64encode(hashlib.sha1(sec_key + MAGIC_STRING.encode()).digest())
+
+        str_handshake = HANDSHAKE_STRING.replace('{1}', res_key.decode()).replace('{2}', HOST + ':' + str(PORT))
+        print
+        str_handshake
+        con.send(str_handshake.encode())
+        return True
+
+
+def new_service():
+    """start a service socket and listen
+    when coms a connection, start a new thread to handle it"""
+
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    try:
+        sock.bind(('localhost', 3368))
+        sock.listen(1000)
+        # 链接队列大小
+        print("bind 3368,ready to use")
+    except:
+        print("Server is already running,quit")
+        sys.exit()
+
+    while True:
+        connection, address = sock.accept()
+        # 返回元组（socket,add），accept调用时会进入waite状态
+        print("Got connection from ", address)
+        if handshake(connection):
+            print("handshake success")
+            try:
+                t = Th(connection)
+                t.start()
+                print('new thread for client ...')
+                while True:
+                    # 读入时间数据
+                    datax = connection.recv(1024)
+                    datax=datax.decode()
+                    print("kangkangwo!")
+                    print("djshfks" + datax)
+                    if not datax:
+                        break
+                    print("kangkangwo!")
+                    y , m ,d = datax.split("-",2)
+                    # 预测函数,生成.csv文件
+                    predict_week_data(y, m, d, 'min')
+                    predict_week_data(y, m, d, 'max')
+                    # 将.csv文件转化成.json文件,生成min.json和max.json文件
+                    transfer_to_json('min')
+                    transfer_to_json('max')
+                    # 解析json文件
+                    predict_result = readJson()
+                    # 将得到的 结果返回网页端
+                    t.send_data(predict_result)
+            except:
+                print('start new thread error')
+                connection.close()
+
+
+if __name__ == '__main__':
+    new_service()

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TESTWEB</title>
+	<!-- <link rel="stylesheet" type="text/css" href="easyui.css"> -->
+	<link rel="stylesheet" type="text/css" href="/static/easyui.css">
+	<link rel="stylesheet" type="text/css" href="/static/success.css">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+	<script type="text/javascript" src="/static/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="/static/jscharts.js"></script>
+	<script type="text/javascript">
+		function line_fun(divid){
+			var myChart = new JSChart(divid, 'line');
+            chart_golbal = myChart;
+			myChart.setTitleColor('#ff9900');////标题字颜色
+			myChart.setTitleFontSize(20);////////标题字大小
+			myChart.setGraphExtend(true);///////是否开启图表网格延伸（多出一截）
+			myChart.setSize(700, 350);///////////图表宽和高
+			myChart.setGridColor('#f77b07');/////图表网格的颜色
+			myChart.setAxisValuesDecimals(1); ///数字的小数点后的位数
+
+			myChart.setAxisValuesFontSize(13);///////两轴字大小
+			myChart.setAxisValuesColor('#ff9900');///两轴字颜色
+			myChart.setAxisColor('#ff9900');/////////两轴颜色
+
+			myChart.setAxisValuesNumberY(11);//////y轴10条线
+			myChart.setIntervalStartY(0);//////////y轴最小值
+			myChart.setIntervalEndY(400);//////////y轴最大值
+			myChart.setAxisPaddingLeft(80);////////y轴到容器左边距离。
+			myChart.setAxisNameY('Tempature/C');//////////////y轴的文字
+
+			myChart.setAxisNameX('');//////////////x轴的文字
+			myChart.setAxisPaddingBottom(30)///////x轴和底部的距离
+			myChart.setShowXValues(false);////////x轴下边文字序号
+			myChart.setAxisValuesNumberX(7);//////x轴有12条线，代表12个月
+			myChart.setTextPaddingBottom(10);//////x轴文字与下边框距离
+
+			myChart.setFlagColor('#00ff00');/////节点颜色
+			myChart.setFlagRadius(4);////////////节点大小
+
+			myChart.setFlagRadius(3);//设置提示标志的半径，默认3.
+			myChart.setFlagWidth(1);//设置提示标志边框宽度，默认1.
+			myChart.setShowXValues(false);//是否显示x轴上的刻度值。
+			myChart.setShowYValues(true);//是否显示y轴上的刻度值。
+
+			myChart.setLineColor('#ffffff', 'line1');
+			myChart.setLineColor('#ff0000', 'line2');
+			myChart.setDataArray([[1,80],[2,40],[3,60],[4,65],[5,50],[6,50],[7,60]],'line1');
+			myChart.setDataArray([[1,100],[2,55],[3,80],[4,115],[5,80],[6,70],[7,30]],'line2');
+		/////////////x轴数量与标识
+			myChart.setLabelX([1,'01']);
+			myChart.setLabelX([2,'02']);
+			myChart.setLabelX([3,'03']);
+			myChart.setLabelX([4,'04']);
+			myChart.setLabelX([5,'05']);
+			myChart.setLabelX([6,'06']);
+			myChart.setLabelX([7,'07']);
+
+		///////////////y轴数量
+			myChart.setTooltip([1]);
+			myChart.setTooltip([2]);
+			myChart.setTooltip([3]);
+			myChart.setTooltip([4]);
+			myChart.setTooltip([5]);
+			myChart.setTooltip([6]);
+			myChart.setTooltip([7]);
+			myChart.setTooltip([8]);
+			myChart.setTooltip([9]);
+			myChart.setTooltip([10]);
+			myChart.setTooltip([11]);
+			myChart.setTooltip([12]);
+			myChart.draw();
+			}
+		</script>
+    <script type="text/javascript">
+    function toInt(number)
+    {
+         return number && + number | 0 || 0;
+    }
+
+$(document).ready(function () {
+
+	namespace = '/test';
+	var socket = io.connect("http://"+document.domain+":"+ location.port +namespace);
+    var i=1;
+    var tmax1,tamx2,tamx3,tmax4,tamx5,tamx6,tamx7;
+    var tmin1,tmin2,tmin3,tmin4,tmin5,tmin6,tmin7;
+    var date1,date2,date3,date4,date5,date6,date7;
+    var tmax=-100,tmin=100;
+    var city;
+	socket.on('my_result', function(msg){
+<!--	     $('#log').append('<br>' + $('<div/>').text('Received #' + msg).html());-->
+	     console.log(msg);
+
+         let my_json = JSON.parse(msg);
+
+         if(i==1)
+         {
+          city = my_json[0];
+          date1 = my_json[1];
+          tmin1 = (my_json[2]-32)/1.8;
+          tmax1 = (my_json[3]-32)/1.8;
+          if(tmax1 > tmax)  tmax=tmax1;
+          if(tmin1 < tmin)  tmin=tmin1;
+          i=i+1;
+<!--          alert("now?");-->
+          }
+         else  if(i==2)
+         {
+          city = my_json[0];
+          date2 = my_json[1];
+          tmin2 = (my_json[2]-32)/1.8;
+          tmax2 = (my_json[3]-32)/1.8;
+          if(tmax2 > tmax)  tmax=tmax2;
+          if(tmin2 < tmin)  tmin=tmin2;
+          i=i+1;
+          }
+         else if(i==3)
+         {
+          city = my_json[0];
+          date3 = my_json[1];
+          tmin3 = (my_json[2]-32)/1.8;
+          tmax3 = (my_json[3]-32)/1.8;
+          if(tmax3 > tmax)  tmax=tmax3;
+          if(tmin3 < tmin)  tmin=tmin3;
+          i=i+1;
+          }
+         else  if(i==4)
+         {
+          city = my_json[0];
+          date4 = my_json[1];
+          tmin4 = (my_json[2]-32)/1.8;
+          tmax4 = (my_json[3]-32)/1.8;
+          if(tmax4 > tmax)  tmax=tmax4;
+          if(tmin4 < tmin)  tmin=tmin4;
+          i=i+1;
+          }
+          else if(i==5)
+         {
+          city = my_json[0];
+          date5 = my_json[1];
+          tmin5 = (my_json[2]-32)/1.8;
+          tmax5 = (my_json[3]-32)/1.8;
+          if(tmax5 > tmax)  tmax=tmax5;
+          if(tmin5 < tmin)  tmin=tmin5;
+          i=i+1;
+          }
+          else if(i==6)
+         {
+          city = my_json[0];
+          date6 = my_json[1];
+          tmin6 = (my_json[2]-32)/1.8;
+          tmax6 = (my_json[3]-32)/1.8;
+          if(tmax6 > tmax)  tmax=tmax6;
+          if(tmin6 < tmin)  tmin=tmin6;
+          i=i+1;
+          }
+          else if(i==7)
+         {
+          city = my_json[0];
+          date7 = my_json[1];
+          tmin7 = (my_json[2]-32)/1.8;
+          tmax7 = (my_json[3]-32)/1.8;
+          if(tmax7 > tmax)  tmax=tmax7;
+          if(tmin7 < tmin)  tmin=tmin7;
+          i=i+1;
+          }
+<!--          alert("hehe");-->
+
+<!--          tmax = toInt(tmax);   tmin=toInt(tmin);-->
+<!--          tmax1 = toInt(tmax1);   tmin1=toInt(tmin1);-->
+<!--          tmax2 = toInt(tmax2);   tmin2=toInt(tmin2);-->
+<!--          tmax3 = toInt(tmax3);   tmin3=toInt(tmin3);-->
+<!--          tmax4 = toInt(tmax4);   tmin4=toInt(tmin4);-->
+<!--          tmax5 = toInt(tmax5);   tmin5=toInt(tmin5);-->
+<!--          tmax6 = toInt(tmax6);   tmin6=toInt(tmin6);-->
+<!--          tmax7 = toInt(tmax7);   tmin7=toInt(tmin7);-->
+
+         if(i==8)
+         {
+            i=1;
+            if(city=='an_hui')   city='He_Fei';
+            if(city=='fu_jian')  city='Fu_Zhou';
+            if(city=='guang_dong') city='Guang_Zhou';
+            if(city=='guang_xi') city='Nan_Ning';
+            if(city=='gui_zhou') city='Gui_Yang';
+            if(city=='hai_nan')  city='Hai_Kou';
+            if(city=='he_bei')   city='Shi_Jia_Zhuang';
+            if(city=='he_nan')   city='Zheng_zhou';
+            if(city=='hei_long_jiang') city='Harbin';
+            if(city=='hu_bei')   city='Wu_han';
+            if(city=='hu_nan')   city='Chang_Sha';
+            if(city=='ji_lin')   city='Chang_Chun';
+            if(city=='jiang_xi') city='Nan_Chang';
+            if(city=='liao_ning') city='Shen_Yang';
+            if(city=='nei_meng_gu') city='Hu_He_Hao_Te';
+            if(city=='ning_xia')  city='Yin_Chuan';
+            if(city=='qing_hai')  city='Xi_Ning';
+            if(city=='shan3_xi')  city='Xi_An';
+            if(city=='shan_dong') city='Ji_Nan';
+            if(city=='shan_xi')   city='Tai_Yuan';
+            if(city=='si_chuan')  city='Cheng_Du';
+            if(city=='xi_zang')   city='La_SA';
+            if(city=='xin_jiang') city='Wu_Lu_Mu_Qi';
+            if(city=='yun_nan')   city='Kun_Ming';
+            if(city=='zhe_jiang') city='Hang_Zhou';
+            var myChart = new JSChart("graph", 'line');
+            myChart.setTitle("Weather of " + city);///////设置标题内容
+			myChart.setTitleColor('#ff9900');////标题字颜色
+			myChart.setTitleFontSize(20);////////标题字大小
+			myChart.setGraphExtend(true);///////是否开启图表网格延伸（多出一截）
+			myChart.setSize(700, 350);///////////图表宽和高
+			myChart.setGridColor('#ff9900');/////图表网格的颜色
+			myChart.setAxisValuesDecimals(1); ///数字的小数点后的位数
+
+			myChart.setAxisValuesFontSize(10);///////两轴字大小
+			myChart.setAxisValuesColor('#ff9900');///两轴字颜色
+			myChart.setAxisColor('#ff9900');/////////两轴颜色
+
+			myChart.setAxisValuesNumberY(10);//////y轴10条线
+			myChart.setIntervalStartY(tmin);//////////y轴最小值
+			myChart.setIntervalEndY(tmax);//////////y轴最大值
+			myChart.setAxisPaddingLeft(100);////////y轴到容器左边距离。
+			myChart.setAxisNameY('Tempature/C');//////////////y轴的文字
+
+			myChart.setAxisNameX('Date/d');//////////////x轴的文字
+			myChart.setAxisPaddingBottom(100)///////x轴和底部的距离
+			myChart.setShowXValues(false);////////x轴下边文字序号
+			myChart.setAxisValuesNumberX(7);//////x轴有7条线，代表7天
+			myChart.setTextPaddingBottom(10);//////x轴文字与下边框距离
+
+			myChart.setFlagColor('#00ff00');/////节点颜色
+			myChart.setFlagRadius(4);////////////节点大小
+
+			myChart.setFlagRadius(3);//设置提示标志的半径，默认3.
+			myChart.setFlagWidth(1);//设置提示标志边框宽度，默认1.
+			myChart.setShowXValues(false);//是否显示x轴上的刻度值。
+			myChart.setShowYValues(true);//是否显示y轴上的刻度值。
+
+			myChart.setLineColor('#ff0000', 'line1');
+			myChart.setLineColor('#ff9900', 'line2');
+			myChart.setDataArray([[1,tmin1],[2,tmin2],[3,tmin3],[4,tmin4],[5,tmin5],[6,tmin6],[7,tmin7]],'line1');
+			myChart.setDataArray([[1,tmax1],[2,tmax2],[3,tmax3],[4,tmax4],[5,tmax5],[6,tmax6],[7,tmax7]],'line2');
+		/////////////x轴数量与标识
+			myChart.setLabelX([1,date1]);
+			myChart.setLabelX([2,date2]);
+			myChart.setLabelX([3,date3]);
+			myChart.setLabelX([4,date4]);
+			myChart.setLabelX([5,date5]);
+			myChart.setLabelX([6,date6]);
+			myChart.setLabelX([7,date7]);
+
+		///////////////y轴数量
+			myChart.setTooltip([1]);
+			myChart.setTooltip([2]);
+			myChart.setTooltip([3]);
+			myChart.setTooltip([4]);
+			myChart.setTooltip([5]);
+			myChart.setTooltip([6]);
+			myChart.setTooltip([7]);
+			myChart.setTooltip([8]);
+			myChart.setTooltip([9]);
+			myChart.setTooltip([10]);
+			myChart.setTooltip([11]);
+			myChart.setTooltip([12]);
+			myChart.draw();
+
+			tmax=-100,tmin=100;
+		}
+	});
+});
+	</script>
+</head>
+
+<body>  
+	<h1 align=center style="color:azure">选择日期查询天气</h1>
+	<FONT style="FONT-SIZE: 40pt; FILTER: shadow(color=green); WIDTH: 100%; COLOR: white; LINE-HEIGHT: 150%; FONT-FAMILY: 华文彩云"></FONT>
+	<B style="color:azure">点击下方的日历标识选择日期</B></FONT>
+	<div style="margin:20px 0;"></div>
+	<div style="width:100%;max-width:400px;padding:30px 60px;margin:0 auto">
+		<div style="margin-bottom:20px">
+			<input class="easyui-datebox" 
+			data-options="label:'',labelPosition:'top',onSelect:onSelect" style="width:100%">
+		</div>
+		<div style="margin:10px 0">
+			<data-options class="value"></data-options>
+			<span style="color: azure;">天气情况: </span>
+			<span id="result" style="color: azure;"></span>
+		</div>
+	</div>
+	<div id="log"></div>
+	<script>
+
+	    var datex="";
+
+		function onSelect(date){
+			$('#result').text(date)
+			datex=date;
+		}
+
+		function init()
+       {
+         namespace = '/test';
+	     var socket = io.connect("http://"+document.domain+":"+ location.port +namespace);
+<!--         alert("herhe");-->
+         var d=new Date(datex);
+         d.setDate(d.getDate() );
+         var month=d.getMonth()+1;
+         var day = d.getDate();
+
+         if(month<10){
+    	    month = "0"+month;
+    	  }
+         if(day<10){
+    	    day = "0"+day;
+    	  }
+
+          var val = d.getFullYear()+"-"+month+"-"+day;
+          socket.emit('search',val);
+
+       }
+	</script>
+
+
+<div style="text-align:center;margin-top:30px">
+	<a href="javascript:init()" class="easyui-linkbutton" plain="true" outline="true" style="width:100px;height:35px"><span style="font-size:16px;color:orange;">查询</span></a> 
+</div>
+	
+	<figure class="highcharts-figure">
+		<div id="container"></div>
+		<p class="highcharts-description">
+		</p>
+		<FONT style="FONT-SIZE: 40pt; FILTER: shadow(color=green); WIDTH: 100%; COLOR: white; LINE-HEIGHT: 150%; FONT-FAMILY: 华文彩云"></FONT>
+	<B style="color: azure;font-size: large;">未来一周天气预测</B></FONT>
+	</figure>
+
+    </head>
+	<div id="graph">Loading graph...</div>
+	<script type="text/javascript">line_fun("graph");</script>
+</body>
+</body>
+</html>

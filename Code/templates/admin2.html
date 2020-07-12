@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>审核部门界面</title>
+     <script type="text/javascript " src="/static/test1.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/admin.css">
+</head>
+<body>
+    <form id="myform" method="post">
+        <h1 align=center>用户审核</h1>
+        <tr>
+            <td align="right">
+                用户名
+            </td>
+            <td align="left">
+<!--                <input type="text" name="username1" id="username1" placeholder="输入用户名" />-->
+
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                密码
+            </td>
+            <td align="left">
+<!--                <input type="text" name="password" id="password" placeholder="输入密码"  />-->
+
+            </td>
+        </tr>
+
+        <div class="ibox-content col-md-12" style="width:100%;max-width:400px;padding:30px 120px;margin:0 auto">
+            <table class="table" id="filedTable">
+                <tr>
+                <td width="32" align="center" bgcolor="#EFEFEF" Name="check">
+                    <input type="checkbox" name="checkbox" value="checkbox" />
+                </td>
+                <td width="162" bgcolor="#EFEFEF" Name="columnname" EditType="TextBox">用户名</td>
+
+             <!--   <td width="112" bgcolor="#EFEFEF" Name="datatype" EditType="DropDownList"
+                    DataItems="{text:'int',value:'int'},{text:'varchar',value:'varchar'},{text:'datetime',value:'datetime'},{text:'longblob',value:'longblob'}">数据类型</td>-->
+                <td width="172" bgcolor="#EFEFEF" Name="length" EditType="TextBox">密码</td>
+                <td width="162" bgcolor="#EFEFEF" Name="columnname" EditType="TextBox">手机号</td>
+                </tr>
+            </table>
+
+                <br />
+                <input type="submit" name="Submit3" value="刷新" />
+
+        </div>
+    </form>
+</body>
+</html>
