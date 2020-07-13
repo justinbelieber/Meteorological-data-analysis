@@ -7,11 +7,16 @@
 
 项目所需提交代码分两部分
 一部分在master分支下 的 Code文件夹中   
-       这部分代码是不包括  XGboost实现模型的代码
-            文件说明：
-            static 文件：   用来存储网页编写所用的js，css文件
-            templates 文件：用来存储网页的HTML文件
-            主文件夹下的.py文件是项目运行的必要文件（其中不包括XGboost模型源文件）
+这部分代码是不包括  XGboost实现模型的代码
+文件说明：
+
+static 文件：   
+用来存储网页编写所用的js，css文件
+
+templates 文件：用来存储网页的HTML文件
+
+主文件夹下的.py文件是项目运行的必要文件（其中不包括XGboost模型源文件）
+
 另一部分在FYEWARD分支下的XGBoost文件夹下
             其中文件是XGboost模型的运行代码。
             
