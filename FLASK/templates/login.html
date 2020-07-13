@@ -1,0 +1,95 @@
+<html>
+	<head>
+		<title>登录界面</title>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" type="text/css" href="/static/register.css" />
+		<script src="/static/checkbox.js" type="text/javascript"></script>
+	</head>
+
+	<body>
+		<div id="3" style="position: relative; top: 100px; z-index: 3;">
+<!--			<form id="myform" action="success.html" method="get" onSubmit="return getcookie()">-->
+			<form id="myform" method="post">
+				<table align="center"  cellspacing="0" class="table">
+					<tr class="thead">
+						<td align="center">
+							用户登录
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<table id="registertable"  border="0px" align="center" border="0px" cellspacing="10px" cellpadding="10px">
+								<tr>
+								
+									<tr>
+										<td align="right">
+											用户名：
+										</td>
+										<td align="left">
+											<input type="text" name="username" id="username2" placeholder="输入用户名"  />
+												
+										</td>
+									</tr>
+									
+									<tr>
+										<td align="right">
+											密 码：
+										</td>
+										<td align="left">
+											<input type="password" name="pass" id="pass2" placeholder="输入密码" />
+										</td>
+									</tr>
+									<tr>
+										<td align="right">
+											输入验证码：
+										</td>
+										<td align="left">  
+           								 	<input type = "text" id = "input" placeholder="输入验证码"  onMouseOut="validate()"/>
+           								 	<input type = "button" id="code" onclick="createCode()"/>  
+           								 	<span id="validate"></span>
+       							   		</td>  
+									</tr>
+				
+									
+								<tr  height="60px">
+									<td  colspan="2">
+										<input type="submit"  value="注册" name= "btn" id="btn" onmousemove="changeBgColor('btn')" onmouseout="recoverBgColor('btn');"
+											 class="submit" style="width: 350px;" onclick="javascript:location.href='register.html'" />
+									</td>
+								</tr>
+								<tr  height="60px">
+									<td  colspan="2">
+										<input type="submit"  value="游客登录" name= "btu2" id="btu2" onmousemove="changeBgColor('btu2')" onmouseout="recoverBgColor('btu2');"
+											class="submit" style="width: 350px;"  />
+									</td>
+								</tr>
+								<tr  height="60px">
+									<td  colspan="2">
+										<input type="submit"  value="登录" name= "btu" onmousemove="changeBgColor('btu')" onmouseout="recoverBgColor('btu');"
+											 class="submit" style="width: 350px;" />
+									</td>
+								</tr>
+								<tr  height="60px">
+									<td  colspan="2">
+										<input type="submit"  value="修改密码" name= "btu3" id="btu3" onmousemove="changeBgColor('btu2')" onmouseout="recoverBgColor('btu2');"
+											 class="submit" style="width: 350px;" onclick="javascript:location.href='forget.html'" />
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+				{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="flash">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+			</form>
+		</div>
+	</body>
+
+</html>

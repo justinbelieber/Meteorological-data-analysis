@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Report</title>
+</head>
+<body>
+    <h1>log in</h1>
+    <form method="post">
+        <label>User:</label><input type="text" name="user"><br>
+        <label>Key:</label><input type="password" name="key"><br>
+        <input type="submit" name="delete" value="Delete">
+        <input type="submit" name="login" value="Login">
+        {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="flash">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    </form>
+</body>
+</html>

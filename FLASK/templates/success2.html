@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TESTWEB</title>    
+	<!-- <link rel="stylesheet" type="text/css" href="easyui.css"> -->
+	<link rel="stylesheet" type="text/css" href="easyui.css">
+	<link rel="stylesheet" type="text/css" href="success.css">
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="jscharts.js"></script>
+    <script type="text/javascript">
+    
+		alert("alert")
+		function init()
+	{
+		var ws = {};
+		if("WebSocket" in window) {
+			ws = new WebSocket("ws://localhost:8080");
+			alert("successful")
+		}
+		else {
+			alert("not suppot web socket")
+		}
+		
+		ws.onopen=function(event){
+			console.log("open...");
+			alert("abc")
+		};
+	
+		ws.onmessage = function(event){
+			var reader = new FileReader();
+			reader.onload=function(eve){
+				if(eve.target.readyState==FileReader.DONE){
+					var oldimg = document.getElementById('oldimg');
+					oldimg.src = this.result;
+				}
+			};
+		};
+	
+		ws.addEventListener('open',function(){
+			ws.send("hello")
+		});
+	}
+	function sendMsg(){
+		ws.send("hello");
+	}
+		</script>
+	 
+
+</head>
+
+<body>  
+	<h1 align=center>选择日期查询天气</h1>
+	<FONT style="FONT-SIZE: 40pt; FILTER: shadow(color=green); WIDTH: 100%; COLOR: white; LINE-HEIGHT: 150%; FONT-FAMILY: 华文彩云"></FONT>
+	<B>点击下方的日历标识选择日期</B></FONT>
+	<div style="margin:20px 0;"></div>
+	<div style="width:100%;max-width:400px;padding:30px 60px;margin:0 auto">
+		<div style="margin-bottom:20px">
+			<input class="easyui-datebox" 
+			data-options="label:'请选择日期:',labelPosition:'top',onSelect:onSelect" style="width:100%;">
+		</div>
+		<div style="margin:10px 0">
+			<data-options class="value"></data-options>
+			<span>天气情况: </span>
+			<span id="result"></span>
+		</div>
+	</div>
+	<script>
+		function onSelect(date){
+			$('#result').text(date+"气温25~30°C")
+		}
+	</script>
+
+
+<div style="text-align:center;margin-top:30px">
+	<a href="javascript:init()" class="easyui-linkbutton" plain="true" outline="true" style="width:100px;height:35px"><span style="font-size:16px">查询</span></a> 
+</div>
+	
+	<figure class="highcharts-figure">
+		<div id="container"></div>
+		<p class="highcharts-description">
+		</p>
+		<FONT style="FONT-SIZE: 40pt; FILTER: shadow(color=green); WIDTH: 100%; COLOR: white; LINE-HEIGHT: 150%; FONT-FAMILY: 华文彩云"></FONT>
+	<B>未来一周天气预测</B></FONT>
+	</figure>
+    <script type="text/javascript">
+		function line_fun(divid){
+			var myChart = new JSChart(divid, 'line');
+			
+			myChart.setTitleColor('#fff');////标题字颜色
+			myChart.setTitleFontSize(20);////////标题字大小
+			myChart.setGraphExtend(true);///////是否开启图表网格延伸（多出一截）
+			myChart.setSize(700, 350);///////////图表宽和高
+			myChart.setGridColor('#ff9900');/////图表网格的颜色
+			myChart.setAxisValuesDecimals(1); ///数字的小数点后的位数
+			
+			myChart.setAxisValuesFontSize(13);///////两轴字大小
+			myChart.setAxisValuesColor('#ff9900');///两轴字颜色
+			myChart.setAxisColor('#ff9900');/////////两轴颜色
+		
+			myChart.setAxisValuesNumberY(11);//////y轴10条线
+			myChart.setIntervalStartY(0);//////////y轴最小值
+			myChart.setIntervalEndY(400);//////////y轴最大值
+			myChart.setAxisPaddingLeft(80);////////y轴到容器左边距离。
+			myChart.setAxisNameY('');//////////////y轴的文字
+			
+			myChart.setAxisNameX('');//////////////x轴的文字
+			myChart.setAxisPaddingBottom(30)///////x轴和底部的距离
+			myChart.setShowXValues(false);////////x轴下边文字序号
+			myChart.setAxisValuesNumberX(7);//////x轴有12条线，代表12个月
+			myChart.setTextPaddingBottom(10);//////x轴文字与下边框距离
+			
+			myChart.setFlagColor('#00ff00');/////节点颜色
+			myChart.setFlagRadius(4);////////////节点大小
+		
+			myChart.setFlagRadius(3);//设置提示标志的半径，默认3.
+			myChart.setFlagWidth(1);//设置提示标志边框宽度，默认1.
+			myChart.setShowXValues(false);//是否显示x轴上的刻度值。
+			myChart.setShowYValues(true);//是否显示y轴上的刻度值。
+		
+			myChart.setLineColor('#ff9900', 'line1');
+			myChart.setLineColor('#ff0000', 'line2');
+			myChart.setDataArray([[1,80],[2,40],[3,60],[4,65],[5,50],[6,50],[7,60]],'line1');
+			myChart.setDataArray([[1,100],[2,55],[3,80],[4,115],[5,80],[6,70],[7,30]],'line2');
+		/////////////x轴数量与标识
+			myChart.setLabelX([1,'01']);
+			myChart.setLabelX([2,'02']);
+			myChart.setLabelX([3,'03']);
+			myChart.setLabelX([4,'04']);
+			myChart.setLabelX([5,'05']);
+			myChart.setLabelX([6,'06']);
+			myChart.setLabelX([7,'07']);
+			
+		///////////////y轴数量
+			myChart.setTooltip([1]);
+			myChart.setTooltip([2]);
+			myChart.setTooltip([3]);
+			myChart.setTooltip([4]);
+			myChart.setTooltip([5]);
+			myChart.setTooltip([6]);
+			myChart.setTooltip([7]);
+			myChart.setTooltip([8]);
+			myChart.setTooltip([9]);
+			myChart.setTooltip([10]);
+			myChart.setTooltip([11]);
+			myChart.setTooltip([12]);
+			myChart.draw();
+			}
+		</script>
+    </head>
+	<div id="graph">Loading graph...</div>
+	<script type="text/javascript">line_fun("graph");</script>
+</body>
+</body>
+</html>
